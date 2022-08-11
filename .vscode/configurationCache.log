@@ -1,0 +1,1 @@
+{"buildTargets":["bootloader","clean","compile","fullkern.bin","install-deps","iso","kernel.o","libs","libsasm","make","mk-files","run"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}

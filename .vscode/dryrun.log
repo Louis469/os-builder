@@ -1,0 +1,7 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/thecodingp/OS-builder'
+sudo apt install qemu-system-x86_64 nasm
+chmod +x deps.sh
+sh deps.sh
+make: Leaving directory '/home/thecodingp/OS-builder'
+ 
