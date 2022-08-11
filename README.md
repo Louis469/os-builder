@@ -1,5 +1,5 @@
 # os-builder
-Just a 32bit os builder inspired by cfenollosa/os-tutorial/
+Just a 32bit (64 bit coming soon!) os builder inspired by cfenollosa/os-tutorial/
 
 # Features
  - Keyboard
