@@ -36,7 +36,7 @@ static void keyboard_callback(registers_t regs)
     }
     else if (scancode == ENTER)
     {
-        print("\n");
+        printf("\n");
         user_input(key_buffer, shellprefix);
         key_buffer[0] = '\0';
     }
@@ -46,7 +46,7 @@ static void keyboard_callback(registers_t regs)
 
         char str[2] = {letter, '\0'};
         append(key_buffer, letter);
-        print(str);
+        printf(str);
     }
     UNUSED(regs);
 }
@@ -54,5 +54,5 @@ static void keyboard_callback(registers_t regs)
 void init_keyboard()
 {
     register_interrupt_handler(IRQ1, keyboard_callback);
-    print(shellprefix);
+    printf(shellprefix);
 }

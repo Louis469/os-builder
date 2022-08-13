@@ -109,8 +109,8 @@ char *exception_messages[] = {
 
 void isr_handler(registers_t r)
 {
-    print(exception_messages[r.int_no]);
-    print("\n");
+    printf(exception_messages[r.int_no]);
+    printf("\n");
 }
 
 void register_interrupt_handler(uint8_t n, isr_t handler)
@@ -132,7 +132,7 @@ void irq_handler(registers_t r)
     }
 }
 
-void irq_install(char *shellprefix)
+void install_irq(char *shellprefix)
 {
     
     asm volatile("sti");

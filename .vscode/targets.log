@@ -1,0 +1,424 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
+# GNU Make 4.3
+ 
+# Built for x86_64-pc-linux-gnu
+ 
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+ 
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Sun Aug 14 08:54:27 2022
+
+# Variables
+
+# environment
+GDK_BACKEND = x11
+# environment
+LC_ALL = C
+# makefile (from 'Makefile', line 1)
+SRC = $(wildcard libc/*.c)
+# environment
+VSCODE_CWD = /home/thecodingp
+# environment
+WAYLAND_DISPLAY_LOW_DENSITY = wayland-1
+# default
+MAKE_COMMAND := make
+# environment
+QT_ACCESSIBILITY = 1
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+PWD = /home/thecodingp/OS-builder
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+XDG_DATA_DIRS = /home/thecodingp/.local/share:/home/thecodingp/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = /home/thecodingp/.config/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
+# environment
+LANG = C
+# default
+.LOADED := 
+# default
+.INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# makefile
+MAKEFLAGS = pqrR
+# makefile
+CURDIR := /home/thecodingp/OS-builder
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+MFLAGS = -pqrR
+# default
+.SHELLFLAGS := -c
+# environment
+SOMMELIER_GLAMOR = 1
+# environment
+WAYLAND_DISPLAY = wayland-0
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+XCURSOR_THEME = Adwaita
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_PID = 264
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+*F = $(notdir $*)
+# environment
+QT_QPA_PLATFORMTHEME = gtk2
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# makefile (from 'Makefile', line 4)
+OBJS = $(patsubst libc/%.c, %.o, $(SRC))
+# makefile
+SHELL = /bin/sh
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 0
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+LD_ARGV0_REL = ../bin/garcon
+# environment
+PATH = /home/thecodingp/.local/bin:/usr/local/i386elfgcc/bin/:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+# default
+MAKEFILES := 
+# environment
+XCURSOR_SIZE_LOW_DENSITY = 15
+# automatic
+^F = $(notdir $^)
+# makefile (from 'Makefile', line 2)
+SRCASM = $(wildcard asm/*.asm)
+# environment
+INVOCATION_ID = 302885a274c64f4d86768e535e6c81e6
+# environment
+XDG_CONFIG_HOME = /home/thecodingp/.config
+# environment
+SOMMELIER_VERSION = 0.20
+# automatic
+?F = $(notdir $?)
+# environment
+XDG_CURRENT_DESKTOP = X-Generic
+# environment
+LS_COLORS = 
+# automatic
++F = $(notdir $+)
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = X-Generic
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+BROWSER = /usr/bin/garcon-url-handler
+# environment
+LOGNAME = thecodingp
+# makefile
+.DEFAULT_GOAL := install-deps
+# environment
+DISPLAY = :0
+# environment
+USER = thecodingp
+# default
+MAKE_VERSION := 4.3
+# environment
+MANAGERPID = 137
+# environment
+NCURSES_NO_UTF8_ACS = 1
+# environment
+SOMMELIER_DRM_DEVICE = /dev/dri/renderD128
+# environment
+_ = /usr/share/code/code
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+DISPLAY_LOW_DENSITY = :1
+# environment
+JOURNAL_STREAM = 7:1769
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /home/thecodingp
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-ef8880aa-1.69.2-main.sock
+# environment
+XCURSOR_SIZE = 30
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# default
+SUFFIXES := 
+# environment
+QT_AUTO_SCREEN_SCALE_FACTOR = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# makefile (from 'Makefile', line 5)
+ASMOBJS = $(patsubst asm/%.asm, asm/%.o, $(SRCASM))
+# variable set hash-table stats:
+# Load=85/1024=8%, Rehash=0, Collisions=5/118=4%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# asm (device 49, inode 339180): 4 files, no impossibilities.
+# . (device 49, inode 323478): 14 files, no impossibilities.
+# libc (device 49, inode 325855): 24 files, no impossibilities.
+
+# 42 files, no impossibilities in 3 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+asm/interrupts.asm:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+compile: fullkern.bin
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 34):
+	cat "boot.bin" "fullkern.bin" > "everything.bin"
+	cat "everything.bin" "null.bin" > os.bin
+	
+
+iso: os.bin
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 50):
+	dd status=noxfer conv=notrunc if=os.bin of=os.flp
+	mv os.flp iso
+	mkisofs -o os.iso -b os.flp -no-emul-boot iso/
+	mv os.iso iso
+
+# Not a target:
+libc/idt.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+kernel.o: kernel.c libc/ata.c libc/idt.c libc/io.c libc/isr.c libc/kbd.c libc/math.c libc/parser.c libc/ports.c libc/timer.c libc/util.c
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 41):
+	i386-elf-gcc -ffreestanding -m32 -g -c kernel.c -o "kernel.o"
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-14 08:54:24.9229098
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+libc/timer.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 28):
+	rm *.bin
+ 
+	rm *.o
+	rm kernel.c
+	rm -r iso
+
+# Not a target:
+libc/math.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+mk-files:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 13):
+	mkdir iso
+	touch kernel.c
+	printf '#include "libc/io.h"\n#include "libc/typedefs.h"\n#include "libc/ata.h"\n#include "libc/isr.h"\n\nvoid main() {\n	//code goes here\n    install_isr();\n    install_irq();\n	print("Hello, world!");\n	return;\n}' > kernel.c
+	touch null.asm
+	touch kerntry.asm
+	printf 'times 10240 db 0' > null.asm
+	nasm -f bin -o null.bin null.asm
+	printf '[bits 32]\n[extern loadkernel]\n[global IDT_load]\n\ncall loadkernel\njmp $$\n\nIDT_load:\n    push ebp\n    mov ebp, esp\n\n    mov eax, [ebp + 8]\n    lidt [eax]\n\n    mov esp, ebp\n    pop ebp\n    ret' > kerntry.asm
+	nasm -f elf -o kerntry.o kerntry.asm
+	rm null.asm
+	rm kerntry.asm
+	echo Write your code in kernel.c!
+	echo And run make compile when done!
+
+# Not a target:
+libc/isr.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+ 
+
+run:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 56):
+	qemu-system-x86_64 os.bin
+
+libsasm: asm/interrupts.asm
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 47):
+	nasm -f elf $^
+
+# Not a target:
+libc/parser.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+libc/kbd.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+libc/util.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+libs: libc/ata.c libc/idt.c libc/io.c libc/isr.c libc/kbd.c libc/math.c libc/parser.c libc/ports.c libc/timer.c libc/util.c
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 44):
+	i386-elf-gcc -ffreestanding -m32 -g -c $^
+
+install-deps:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 8):
+	sudo apt install qemu-system-x86_64 nasm
+	chmod +x deps.sh
+	sh deps.sh
+
+# Not a target:
+kernel.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+libc/io.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+libc/ports.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+bootloader:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 59):
+	xxd -r -p bootsamp.txt boot.bin
+
+fullkern.bin: kernel.o libs libsasm
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 38):
+	i386-elf-ld -o "fullkern.bin" -Ttext 0x7e00 "kerntry.o" $(ASMOBJS) "kernel.o" $(OBJS) --oformat binary
+
+# Not a target:
+os.bin:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+libc/ata.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=28/1024=3%, Rehash=0, Collisions=0/69=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 65 / storage = 570 B / avg = 8 B
+# current buf: size = 8162 B / used = 570 B / count = 65 / avg = 8 B
+
+# strcache performance: lookups = 102 / hit rate = 36%
+# hash-table stats:
+# Load=65/8192=1%, Rehash=0, Collisions=1/102=1%
+# Finished Make data base on Sun Aug 14 08:54:27 2022
+
+ 

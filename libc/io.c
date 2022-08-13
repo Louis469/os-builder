@@ -1,99 +1,221 @@
 #include "io.h"
 
-int get_cursor_offset();
-void set_cursor_offset(int offset);
-int print_char(char c, int col, int row, char attr);
+int CURRENT_CURSOR_POSITION = 0;
+
+void set_cursor_position(int offset);
+int get_cursor_position();
+int print_char_at(char c, int col, int row, char attr);
+int get_current_cursor_row();
+int get_current_cursor_column();
 int get_offset(int col, int row);
-int get_offset_row(int offset);
-int get_offset_col(int offset);
+void itoa(uint8_t *buf, uint32_t base, uint32_t d);
 
-
-void print_top_left(char *str)
+void clear()
 {
-    unsigned char *video = ((unsigned char *)VIDEO_START);
-
-    while (*str != '\0')
+    char *video_memory = (char *)VIDEO_ADDRESS;
+    int row = 0;
+    for (row = 0; row < TOTAL_COLS * TOTAL_ROWS; row++)
     {
-        *(video++) = *str++;
-        *(video++) = 0x07;
+        video_memory[row * 2] = ' ';
+        video_memory[row * 2 + 1] = STD_MSG_COLOR;
     }
+    CURRENT_CURSOR_POSITION = 0x00;
+    set_cursor_position(CURRENT_CURSOR_POSITION);
 }
 
-void printrainbow(char *str)
+void printf(const char *format, ...)
 {
-    unsigned char *video = ((unsigned char *)VIDEO_START);
-    unsigned int color = 0x00;
+    uint8_t **arg = (uint8_t **)&format;
+    uint8_t c;
+    uint8_t buf[20];
 
-    while (*str != '\0')
+    arg++;
+
+    while ((c = *format++) != 0)
     {
-        *(video++) = *str++;
-        if (color == swapNibbles(color))
-        {
-            color += 0x1;
-        }
-        *(video++) = color;
-        if (color == 0xFF)
-        {
-            color = 0x00;
-        }
+        if (c != '%')
+            putchar(c);
         else
         {
-            color += 0x01;
+            uint8_t *p, *p2;
+            int pad0 = 0, pad = 0;
+
+            c = *format++;
+            if (c == '0')
+            {
+                pad0 = 1;
+                c = *format++;
+            }
+
+            if (c >= '0' && c <= '9')
+            {
+                pad = c - '0';
+                c = *format++;
+            }
+
+            switch (c)
+            {
+            case 'X':
+            case 'd':
+            case 'u':
+            case 'x':
+                itoa(buf, c, *((int *)arg++));
+                p = buf;
+                goto string;
+                break;
+            case 's':
+                p = *arg++;
+                if (!p)
+                    p = (uint8_t *)"(null)";
+            string:
+                for (p2 = p; *p2; p2++)
+                    ;
+                for (; p2 < p + pad; p2++)
+                    putchar(pad0 ? '0' : ' ');
+                while (*p)
+                    putchar(*p++);
+                break;
+            default:
+                putchar(*((int *)arg++));
+                break;
+            }
         }
     }
 }
 
-void print_at(char *message, int col, int row)
+void putchar(char *str)
 {
-    
-    int offset;
-    if (col >= 0 && row >= 0)
-        offset = get_offset(col, row);
+    char *video_memory = (char *)VIDEO_ADDRESS;
+
+    int cursorPosition = get_cursor_position();
+    int row = get_current_cursor_row(cursorPosition);
+    int column = get_current_cursor_column(cursorPosition);
+
+    if (str == '\n')
+    {
+        cursorPosition = get_offset(column, row + 1);
+    }
+    else if (str == '\r')
+    {
+        cursorPosition = get_offset(0, row);
+    }
+    else if (str == '\t')
+    {
+        cursorPosition = get_offset(column + 4, row);
+    }
     else
     {
-        offset = get_cursor_offset();
-        row = get_offset_row(offset);
-        col = get_offset_col(offset);
+        video_memory[cursorPosition] = str;
+        video_memory[cursorPosition + 1] = STD_MSG_COLOR;
+        cursorPosition = cursorPosition + 2;
     }
 
-    
-    int i = 0;
-    while (message[i] != 0)
+    if (cursorPosition >= TOTAL_ROWS * TOTAL_COLS * 2)
     {
-        offset = print_char(message[i++], col, row, VGA_LIGHT_GRAY);
-        
-        row = get_offset_row(offset);
-        col = get_offset_col(offset);
+        int i;
+
+        for (i = 1; i < TOTAL_ROWS; i++)
+        {
+            memory_copy(get_offset(0, i) + VIDEO_ADDRESS, get_offset(0, i - 1) + VIDEO_ADDRESS, TOTAL_COLS * 2);
+        }
+
+        char *last_line = get_offset(0, TOTAL_ROWS - 1) + VIDEO_ADDRESS;
+        for (i = 0; i < TOTAL_COLS * 2; i++)
+        {
+            last_line[i] = 0;
+        }
+
+        cursorPosition = get_offset(0, TOTAL_ROWS - 1);
     }
+    set_cursor_position(cursorPosition);
 }
 
-void print(char *message)
+int get_cursor_position()
 {
-    print_at(message, -1, -1);
+    port_byte_out(REG_SCREEN_CTRL, 14);
+    int position = port_byte_in(REG_SCREEN_DATA) << 8;
+
+    port_byte_out(REG_SCREEN_CTRL, 15);
+    position += port_byte_in(REG_SCREEN_DATA);
+
+    return position * 2;
+}
+
+void set_cursor_position(int offset)
+{
+    offset /= 2;
+    port_byte_out(REG_SCREEN_CTRL, 14);
+    port_byte_out(REG_SCREEN_DATA, offset >> 8);
+
+    port_byte_out(REG_SCREEN_CTRL, 15);
+    port_byte_out(REG_SCREEN_DATA, offset & 0xff);
+}
+
+int get_current_cursor_row(int cursorPosition)
+{
+    return cursorPosition / (2 * TOTAL_COLS);
+}
+
+int get_current_cursor_column(int cursorPosition)
+{
+    return (cursorPosition - (get_current_cursor_row(cursorPosition) * 2 * TOTAL_COLS)) / 2;
+}
+
+int get_offset(int col, int row) { return 2 * (row * TOTAL_COLS + col); }
+
+void itoa(uint8_t *buf, uint32_t base, uint32_t d)
+{
+    uint8_t *p = buf;
+    uint8_t *p1, *p2;
+    uint32_t ud = d;
+    uint32_t divisor = 10;
+
+    if (base == 'd' && d < 0)
+    {
+        *p++ = '-';
+        buf++;
+        ud = -d;
+    }
+    else if (base == 'x')
+        divisor = 16;
+
+    do
+    {
+        uint32_t remainder = ud % divisor;
+        *p++ = (remainder < 10) ? remainder + '0' : remainder + 'a' - 10;
+    } while (ud /= divisor);
+
+    *p = 0;
+    p1 = buf;
+    p2 = p - 1;
+    while (p1 < p2)
+    {
+        uint8_t tmp = *p1;
+        *p1 = *p2;
+        *p2 = tmp;
+        p1++;
+        p2--;
+    }
 }
 
 void del_last_char()
 {
-    int offset = get_cursor_offset() - 2;
-    int row = get_offset_row(offset);
-    int col = get_offset_col(offset);
-    print_char(0x08, col, row, VGA_LIGHT_GRAY);
+    int offset = get_cursor_position() - 2;
+    int row = get_current_cursor_row(offset);
+    int col = get_current_cursor_column(offset);
+    print_char_at(0x08, col, row, STD_MSG_COLOR);
 }
 
-
-
-
-int print_char(char c, int col, int row, char attr)
+int print_char_at(char c, int col, int row, char attr)
 {
-    uint8_t *vidmem = (uint8_t *)VIDEO_START;
+    uint8_t *vidmem = (uint8_t *)VIDEO_ADDRESS;
     if (!attr)
-        attr = VGA_LIGHT_GRAY;
+        attr = STD_MSG_COLOR;
 
-    
-    if (col >= MAX_COLS || row >= MAX_ROWS)
+    if (col >= TOTAL_COLS || row >= TOTAL_ROWS)
     {
-        vidmem[2 * (MAX_COLS) * (MAX_ROWS)-2] = 'E';
-        vidmem[2 * (MAX_COLS) * (MAX_ROWS)-1] = RED_ON_WHITE;
+        vidmem[2 * (TOTAL_COLS) * (TOTAL_ROWS)-2] = 'E';
+        vidmem[2 * (TOTAL_COLS) * (TOTAL_ROWS)-1] = ERROR_MSG_COLOR;
         return get_offset(col, row);
     }
 
@@ -101,15 +223,15 @@ int print_char(char c, int col, int row, char attr)
     if (col >= 0 && row >= 0)
         offset = get_offset(col, row);
     else
-        offset = get_cursor_offset();
+        offset = get_cursor_position();
 
     if (c == '\n')
     {
-        row = get_offset_row(offset);
+        row = get_current_cursor_row(offset);
         offset = get_offset(0, row + 1);
     }
     else if (c == 0x08)
-    { 
+    {
         vidmem[offset] = ' ';
         vidmem[offset + 1] = attr;
     }
@@ -120,60 +242,21 @@ int print_char(char c, int col, int row, char attr)
         offset += 2;
     }
 
-    
-    if (offset >= MAX_ROWS * MAX_COLS * 2)
+    if (offset >= TOTAL_ROWS * TOTAL_COLS * 2)
     {
         int i;
-        for (i = 1; i < MAX_ROWS; i++)
-            memory_copy((uint8_t *)(get_offset(0, i) + VIDEO_START),
-                        (uint8_t *)(get_offset(0, i - 1) + VIDEO_START),
-                        MAX_COLS * 2);
+        for (i = 1; i < TOTAL_ROWS; i++)
+            memory_copy((uint8_t *)(get_offset(0, i) + VIDEO_ADDRESS),
+                        (uint8_t *)(get_offset(0, i - 1) + VIDEO_ADDRESS),
+                        TOTAL_COLS * 2);
 
-        
-        char *last_line = (char *)(get_offset(0, MAX_ROWS - 1) + (uint8_t *)VIDEO_START);
-        for (i = 0; i < MAX_COLS * 2; i++)
+        char *last_line = (char *)(get_offset(0, TOTAL_ROWS - 1) + (uint8_t *)VIDEO_ADDRESS);
+        for (i = 0; i < TOTAL_COLS * 2; i++)
             last_line[i] = 0;
 
-        offset -= 2 * MAX_COLS;
+        offset -= 2 * TOTAL_COLS;
     }
 
-    set_cursor_offset(offset);
+    set_cursor_position(offset);
     return offset;
 }
-int get_cursor_offset()
-{
-
-    port_byte_out(REG_SCREEN_CTRL, 14);
-    int offset = port_byte_in(REG_SCREEN_DATA) << 8;
-    port_byte_out(REG_SCREEN_CTRL, 15);
-    offset += port_byte_in(REG_SCREEN_DATA);
-    return offset * 2;
-}
-
-void set_cursor_offset(int offset)
-{
-
-    offset /= 2;
-    port_byte_out(REG_SCREEN_CTRL, 14);
-    port_byte_out(REG_SCREEN_DATA, (unsigned char)(offset >> 8));
-    port_byte_out(REG_SCREEN_CTRL, 15);
-    port_byte_out(REG_SCREEN_DATA, (unsigned char)(offset & 0xff));
-}
-
-void clear_screen()
-{
-    int screen_size = MAX_COLS * MAX_ROWS;
-    int i;
-    char *screen = VIDEO_START;
-
-    for (i = 0; i < screen_size; i++)
-    {
-        screen[i * 2] = ' ';
-        screen[i * 2 + 1] = VGA_LIGHT_GRAY;
-    }
-    set_cursor_offset(get_offset(0, 0));
-}
-
-int get_offset(int col, int row) { return 2 * (row * MAX_COLS + col); }
-int get_offset_row(int offset) { return offset / (2 * MAX_COLS); }
-int get_offset_col(int offset) { return (offset - (get_offset_row(offset) * 2 * MAX_COLS)) / 2; }

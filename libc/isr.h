@@ -83,7 +83,7 @@ typedef struct
 } registers_t;
 
 void install_isr();
-void irq_install();
+void install_irq();
 
 void isr_handler(registers_t r);
 

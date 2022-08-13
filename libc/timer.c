@@ -4,12 +4,12 @@ uint32_t tick = 0;
 
 static void timer_callback(registers_t regs) {
     tick++;
-    // print("Tick: ");
+    // printf("Tick: ");
     
     // char tick_ascii[256];
     // int_to_ascii(tick, tick_ascii);
-    // print(tick_ascii);
-    // print("\n");
+    // printf(tick_ascii);
+    // printf("\n");
 }
 
 void init_timer(uint32_t freq) {

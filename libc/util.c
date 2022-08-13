@@ -16,9 +16,10 @@ void memory_set(uint8_t *dest, uint8_t val, uint32_t len)
         *temp++ = val;
 }
 
-void int_to_ascii(int n, char str[])
+char *int_to_ascii(int n)
 {
     int i, sign;
+    char *str;
     if ((sign = n) < 0)
         n = -n;
     i = 0;
@@ -32,6 +33,7 @@ void int_to_ascii(int n, char str[])
     str[i] = '\0';
 
     reverse(str);
+    return str;
 }
 
 

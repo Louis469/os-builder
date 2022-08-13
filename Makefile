@@ -11,14 +11,13 @@ install-deps:
 
 mk-files:
 	mkdir iso
-	mkdir asm
 	touch kernel.c
-	printf '#include "libc/io.h"\n#include "libc/typedefs.h"\n\nvoid main() {\n	//code goes here\n	print("Hello, world!");\n	return;\n}' > kernel.c
+	printf '#include "libc/io.h"\n#include "libc/typedefs.h"\n#include "libc/ata.h"\n#include "libc/isr.h"\n\nvoid main() {\n	//code goes here\n    install_isr();\n    install_irq();\n	printf("Hello, world!");\n	return;\n}' > kernel.c
 	touch null.asm
 	touch kerntry.asm
 	printf 'times 10240 db 0' > null.asm
 	nasm -f bin -o null.bin null.asm
-	printf '[bits 32]\n[extern main]\n[global IDT_load]\n\ncall main\njmp $$\n\nIDT_load:\n    push ebp\n    mov ebp, esp\n\n    mov eax, [ebp + 8]\n    lidt [eax]\n\n    mov esp, ebp\n    pop ebp\n    ret' > kerntry.asm
+	printf '[bits 32]\n[extern loadkernel]\n[global IDT_load]\n\ncall loadkernel\njmp $$\n\nIDT_load:\n    push ebp\n    mov ebp, esp\n\n    mov eax, [ebp + 8]\n    lidt [eax]\n\n    mov esp, ebp\n    pop ebp\n    ret' > kerntry.asm
 	nasm -f elf -o kerntry.o kerntry.asm
 	rm null.asm
 	rm kerntry.asm
@@ -38,7 +37,7 @@ compile: fullkern.bin
 fullkern.bin: kernel.o libs libsasm
 	i386-elf-ld -o "fullkern.bin" -Ttext 0x7e00 "kerntry.o" $(ASMOBJS) "kernel.o" $(OBJS) --oformat binary
 
-kernel.o: kernel.c
+kernel.o: kernel.c $(SRC)
 	i386-elf-gcc -ffreestanding -m32 -g -c kernel.c -o "kernel.o"
 
 libs: $(SRC)
