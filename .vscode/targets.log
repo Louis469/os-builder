@@ -2,16 +2,13 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target 'all'.  Stop.
 
 # GNU Make 4.3
- 
 # Built for x86_64-pc-linux-gnu
- 
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
- 
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Aug 14 08:54:27 2022
+# Make data base, printed on Sun Aug 14 16:41:36 2022
 
 # Variables
 
@@ -22,7 +19,7 @@ LC_ALL = C
 # makefile (from 'Makefile', line 1)
 SRC = $(wildcard libc/*.c)
 # environment
-VSCODE_CWD = /home/thecodingp
+VSCODE_CWD = /home/thecodingp/OS-builder
 # environment
 WAYLAND_DISPLAY_LOW_DENSITY = wayland-1
 # default
@@ -41,6 +38,8 @@ PWD = /home/thecodingp/OS-builder
 %D = $(patsubst %/,%,$(dir $%))
 # environment
 XDG_DATA_DIRS = /home/thecodingp/.local/share:/home/thecodingp/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+# environment
+OLDPWD = /home/thecodingp
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # automatic
@@ -58,7 +57,7 @@ MAKEFLAGS = pqrR
 # makefile
 CURDIR := /home/thecodingp/OS-builder
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -78,7 +77,7 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 264
+VSCODE_PID = 2153
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -102,13 +101,13 @@ SHELL = /bin/sh
 # default
 MAKECMDGOALS := all
 # environment
-SHLVL = 0
+SHLVL = 1
 # environment
 MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-LD_ARGV0_REL = ../bin/garcon
+LD_ARGV0_REL = ../bin/vshd
 # environment
 PATH = /home/thecodingp/.local/bin:/usr/local/i386elfgcc/bin/:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 # default
@@ -120,7 +119,7 @@ XCURSOR_SIZE_LOW_DENSITY = 15
 # makefile (from 'Makefile', line 2)
 SRCASM = $(wildcard asm/*.asm)
 # environment
-INVOCATION_ID = 302885a274c64f4d86768e535e6c81e6
+INVOCATION_ID = 22396281309c4403bf705c3c94379cb3
 # environment
 XDG_CONFIG_HOME = /home/thecodingp/.config
 # environment
@@ -130,7 +129,7 @@ SOMMELIER_VERSION = 0.20
 # environment
 XDG_CURRENT_DESKTOP = X-Generic
 # environment
-LS_COLORS = 
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
 # automatic
 +F = $(notdir $+)
 # environment
@@ -150,19 +149,19 @@ USER = thecodingp
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 137
+MANAGERPID = 134
 # environment
 NCURSES_NO_UTF8_ACS = 1
 # environment
 SOMMELIER_DRM_DEVICE = /dev/dri/renderD128
 # environment
-_ = /usr/share/code/code
+_ = /usr/bin/code
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 DISPLAY_LOW_DENSITY = :1
 # environment
-JOURNAL_STREAM = 7:1769
+JOURNAL_STREAM = 7:2974
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -171,6 +170,8 @@ HOME = /home/thecodingp
 ELECTRON_RUN_AS_NODE = 1
 # environment
 VSCODE_IPC_HOOK = /run/user/1000/vscode-ef8880aa-1.69.2-main.sock
+# environment
+TERM = xterm-256color
 # environment
 XCURSOR_SIZE = 30
 # default
@@ -181,12 +182,16 @@ XCURSOR_SIZE = 30
 SUFFIXES := 
 # environment
 QT_AUTO_SCREEN_SCALE_FACTOR = 1
+# environment
+VSCODE_CLI = 1
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
 # makefile (from 'Makefile', line 5)
 ASMOBJS = $(patsubst asm/%.asm, asm/%.o, $(SRCASM))
 # variable set hash-table stats:
-# Load=85/1024=8%, Rehash=0, Collisions=5/118=4%
+# Load=89/1024=9%, Rehash=0, Collisions=6/122=5%
 
 # Pattern-specific Variable Values
 
@@ -195,10 +200,10 @@ ASMOBJS = $(patsubst asm/%.asm, asm/%.o, $(SRCASM))
 # Directories
 
 # asm (device 49, inode 339180): 4 files, no impossibilities.
-# . (device 49, inode 323478): 14 files, no impossibilities.
+# . (device 49, inode 323478): 29 files, no impossibilities.
 # libc (device 49, inode 325855): 24 files, no impossibilities.
 
-# 42 files, no impossibilities in 3 directories.
+# 57 files, no impossibilities in 3 directories.
 
 # Implicit Rules
 
@@ -247,7 +252,7 @@ kernel.o: kernel.c libc/ata.c libc/idt.c libc/io.c libc/isr.c libc/kbd.c libc/ma
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-14 08:54:24.9229098
+#  Last modified 2022-08-14 16:40:53.695624016
 #  File has been updated.
 #  Successfully updated.
 
@@ -263,7 +268,6 @@ clean:
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 28):
 	rm *.bin
- 
 	rm *.o
 	rm kernel.c
 	rm -r iso
@@ -275,18 +279,19 @@ libc/math.c:
 #  File has not been updated.
 
 mk-files:
+ 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 13):
 	mkdir iso
 	touch kernel.c
-	printf '#include "libc/io.h"\n#include "libc/typedefs.h"\n#include "libc/ata.h"\n#include "libc/isr.h"\n\nvoid main() {\n	//code goes here\n    install_isr();\n    install_irq();\n	print("Hello, world!");\n	return;\n}' > kernel.c
+	printf '#include "libc/io.h"\n#include "libc/typedefs.h"\n#include "libc/ata.h"\n#include "libc/isr.h"\n\nvoid main() {\n	//code goes here\n    install_isr();\n    install_irq();\n	printf("Hello, world!");\n	return;\n}' > kernel.c
 	touch null.asm
 	touch kerntry.asm
 	printf 'times 10240 db 0' > null.asm
 	nasm -f bin -o null.bin null.asm
-	printf '[bits 32]\n[extern loadkernel]\n[global IDT_load]\n\ncall loadkernel\njmp $$\n\nIDT_load:\n    push ebp\n    mov ebp, esp\n\n    mov eax, [ebp + 8]\n    lidt [eax]\n\n    mov esp, ebp\n    pop ebp\n    ret' > kerntry.asm
+	printf '[bits 32]\n[extern main]\n[global IDT_load]\n\ncall main\njmp $$\n\nIDT_load:\n    push ebp\n    mov ebp, esp\n\n    mov eax, [ebp + 8]\n    lidt [eax]\n\n    mov esp, ebp\n    pop ebp\n    ret' > kerntry.asm
 	nasm -f elf -o kerntry.o kerntry.asm
 	rm null.asm
 	rm kerntry.asm
@@ -311,8 +316,8 @@ all:
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has not been updated.
- 
 
+ 
 run:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -353,6 +358,7 @@ libs: libc/ata.c libc/idt.c libc/io.c libc/isr.c libc/kbd.c libc/math.c libc/par
 	i386-elf-gcc -ffreestanding -m32 -g -c $^
 
 install-deps:
+ 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -413,12 +419,12 @@ libc/ata.c:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 65 / storage = 570 B / avg = 8 B
-# current buf: size = 8162 B / used = 570 B / count = 65 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 77 / storage = 662 B / avg = 8 B
+# current buf: size = 8162 B / used = 662 B / count = 77 / avg = 8 B
 
-# strcache performance: lookups = 102 / hit rate = 36%
+# strcache performance: lookups = 117 / hit rate = 34%
 # hash-table stats:
-# Load=65/8192=1%, Rehash=0, Collisions=1/102=1%
-# Finished Make data base on Sun Aug 14 08:54:27 2022
+# Load=77/8192=1%, Rehash=0, Collisions=1/117=1%
+# Finished Make data base on Sun Aug 14 16:41:36 2022
 
  
