@@ -5,7 +5,7 @@ OBJS=$(patsubst libc/%.c, %.o, $(SRC))
 ASMOBJS=$(patsubst asm/%.asm, asm/%.o, $(SRCASM))
 
 install-deps:
-	sudo apt install qemu-system-x86_64 nasm
+	sudo apt install qemu-system-kvm nasm
 	chmod +x deps.sh
 	sh deps.sh
 
