@@ -1,4 +1,5 @@
 #include "kbd.h"
+#include "config.h"
 
 #define BACKSPACE 0x0E
 #define ENTER 0x1C
@@ -6,8 +7,6 @@
 #define RSHIFT 0x36
 
 static char key_buffer[256];
-
-char *shellprefix = "Shell$> ";
 
 #define SC_MAX 57
 const char *sc_name[] = {"ERROR", "Esc", "1", "2", "3", "4", "5", "6",
@@ -37,7 +36,7 @@ static void keyboard_callback(registers_t regs)
     else if (scancode == ENTER)
     {
         printf("\n");
-        user_input(key_buffer, shellprefix);
+        user_input(key_buffer);
         key_buffer[0] = '\0';
     }
     else

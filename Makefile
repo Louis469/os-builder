@@ -12,7 +12,7 @@ install-deps:
 mk-files:
 	mkdir iso
 	touch kernel.c
-	printf '#include "libc/io.h"\n#include "libc/typedefs.h"\n#include "libc/ata.h"\n#include "libc/isr.h"\n\nvoid main() {\n	//code goes here\n	printf("Hello, world!");\n	return;\n}' > kernel.c
+	printf '#include "libc/io.h"\n#include "libc/typedefs.h"\n#include "libc/ata.h"\n#include "libc/isr.h"\n\nvoid main() {\n	//setup keyboard and shell (you can edit shell config in config.c and config.h)\n	install_isr();\n	install_irq();\n	//code here\n	return;\n}' > kernel.c
 	touch null.asm
 	touch kerntry.asm
 	printf 'times 10240 db 0' > null.asm

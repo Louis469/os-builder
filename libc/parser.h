@@ -2,4 +2,4 @@
 #include "io.h"
 #include "util.h"
 
-void user_input(char *input, char *shellprefix);
+void user_input(char input[]);

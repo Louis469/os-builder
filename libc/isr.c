@@ -1,4 +1,5 @@
 #include "isr.h"
+#include "config.h"
 
 isr_t interrupt_handlers[256];
 
@@ -132,7 +133,7 @@ void irq_handler(registers_t r)
     }
 }
 
-void install_irq(char *shellprefix)
+void install_irq()
 {
     
     asm volatile("sti");

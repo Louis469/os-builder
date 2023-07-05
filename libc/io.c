@@ -93,7 +93,7 @@ void putchar(char *str)
 
     if (str == '\n')
     {
-        cursorPosition = get_offset(column, row + 1);
+        cursorPosition = get_offset(0, row + 1);
     }
     else if (str == '\r')
     {
