@@ -3,7 +3,7 @@
 
 void user_input(char input[])
 {
-  if (strcmp(input, "END") == 0) {
+  if (strcmp(input, "SHUTDOWN") == 0) {
     printf("Stopping the CPU. Bye!\n");
     asm volatile("hlt");
   }
