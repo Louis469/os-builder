@@ -12,6 +12,14 @@ static void timer_callback(registers_t regs) {
     // printf("\n");
 }
 
+void sleep(uint32_t delay)
+{
+    uint32_t crnttick = tick;
+    while (tick < crnttick + delay) {
+    }
+    return;
+}
+
 void init_timer(uint32_t freq) {
     
     register_interrupt_handler(IRQ0, timer_callback);

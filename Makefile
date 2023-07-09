@@ -1,6 +1,8 @@
 SRC=$(wildcard libc/*.c)
 SRCASM=$(wildcard asm/*.asm)
 
+ASMDIR := asm
+
 OBJS=$(patsubst libc/%.c, %.o, $(SRC))
 ASMOBJS=$(patsubst asm/%.asm, asm/%.o, $(SRCASM))
 
@@ -27,6 +29,7 @@ mk-files:
 clean:
 	rm *.bin
 	rm *.o
+	rm asm/*.o
 	rm kernel.c
 	rm -r iso
 
@@ -43,8 +46,11 @@ kernel.o: kernel.c $(SRC)
 libs: $(SRC)
 	i386-elf-gcc -ffreestanding -m32 -g -c $^
 
-libsasm: $(SRCASM)
-	nasm -f elf $^
+libsasm: $(ASMOBJS)
+	make $^
+
+$(ASMDIR)/%.o: $(ASMDIR)/%.asm
+	nasm -f elf -o $@ $<
 
 iso: os.bin
 	dd status=noxfer conv=notrunc if=os.bin of=os.flp
@@ -53,7 +59,7 @@ iso: os.bin
 	mv os.iso iso
 
 run:
-	qemu-system-x86_64 os.bin
+	qemu-system-x86_64 -soundhw pcspk os.bin
 
 bootloader:
 	xxd -r -p bootsamp.txt boot.bin
