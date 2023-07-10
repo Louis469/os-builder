@@ -7,10 +7,11 @@ void user_input(char input[])
     printf("Stopping the CPU. Bye!\n");
     asm volatile("hlt");
   } else if (strcmp(input, "HELLO") == 0) {
-    printf("Hello!\n");
+    printf("Hello!");
+  } else {
+    printf("You said: ");
+    printf(input);
   }
-  printf("You said: ");
-  printf(input);
   printf("\n");
   printf(shellprefix);
 }

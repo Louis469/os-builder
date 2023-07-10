@@ -20,12 +20,12 @@ void sleep(uint32_t delay)
     return;
 }
 
-void init_timer(uint32_t freq) {
+void init_timer() {
     
     register_interrupt_handler(IRQ0, timer_callback);
 
     
-    uint32_t divisor = 1193180 / freq;
+    uint32_t divisor = 1193180 / timerfreq;
     uint8_t low  = (uint8_t)(divisor & 0xFF);
     uint8_t high = (uint8_t)( (divisor >> 8) & 0xFF);
     

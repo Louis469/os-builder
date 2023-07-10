@@ -138,7 +138,5 @@ void install_irq()
     
     asm volatile("sti");
     
-    init_timer(50);
-    
-    init_keyboard(shellprefix);
+    init_timer();
 }
